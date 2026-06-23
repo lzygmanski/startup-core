@@ -23,17 +23,18 @@ libs/core/         Generic domain, application, and contracts libraries
 libs/shared/ui/    Shared shadcn-style UI primitives
 libs/modules/      Future business modules
 libs/adapters/     Future infrastructure integrations
-infra/             Future CDK deployment code
+infra/cdk/         CDK stateful and stateless infrastructure stacks
 docs/              Architecture decisions and conventions
 ```
 
-The generic shell uses TanStack Router, TanStack Query, Tailwind CSS, and a shared UI button. The source-level core API exposes a `getCoreHealth` GraphQL contract through a thin, validated resolver. There are deliberately no deployed AWS resources, persistence, authentication, product modules, or Module Federation configuration yet.
+The generic shell uses TanStack Router, TanStack Query, Tailwind CSS, and a shared UI button. The core API exposes a `getCoreHealth` GraphQL contract through a thin, validated resolver. CDK defines separately deployable stateful and stateless stacks; no AWS resources have been deployed by this repository. There is still no persistence, authentication, product module, or Module Federation configuration.
 
 ## Run the Shell
 
 ```sh
 pnpm nx serve shell
 pnpm nx test core-api
+pnpm cdk:synth
 ```
 
 Open the local URL printed by Rsbuild (normally `http://localhost:3000`) to view the Hello World page.

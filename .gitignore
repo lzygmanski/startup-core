@@ -7,6 +7,7 @@ node_modules/
 .nx/
 dist/
 coverage/
+cdk.out/
 
 # Local configuration and editor state
 .env

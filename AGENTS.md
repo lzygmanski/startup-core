@@ -2,14 +2,14 @@
 
 ## Project Structure & Module Organization
 
-This is a pnpm-managed Nx monorepo in Phase 3. `apps/shell` is the generic React/Rsbuild frontend, and `services/core-api` contains the source-level GraphQL health resolver. AWS deployment, persistence, authentication, business modules, and Module Federation are not implemented yet. Follow these locations as projects are added:
+This is a pnpm-managed Nx monorepo in Phase 4. `apps/shell` is the generic React/Rsbuild frontend, `services/core-api` contains the GraphQL health resolver, and `infra/cdk` defines stateful and stateless stacks. Nothing has been deployed; persistence, authentication, business modules, and Module Federation are not implemented yet. Follow these locations as projects are added:
 
 - `apps/shell/` — generic React shell with TanStack Router and Query.
 - `services/core-api/` — GraphQL schema, handler, mappers, and resolvers.
 - `libs/core/` — reusable generic domain, application, and contracts code.
 - `libs/shared/` — generic cross-cutting code.
 - `libs/modules/<module>/` — module-specific domain, application, contracts, and UI.
-- `libs/adapters/` and `infra/` — integrations and future CDK infrastructure.
+- `libs/adapters/` and `infra/cdk/` — integrations and CDK infrastructure.
 
 Keep `libs/core` product-neutral. Product-specific behavior belongs in a module, not the core.
 
@@ -24,6 +24,7 @@ pnpm typecheck     # strict TypeScript, then Nx project targets
 pnpm test          # Vitest, then Nx project test targets
 pnpm build         # all Nx build targets
 pnpm nx serve shell # run the local Rsbuild shell
+pnpm cdk:synth      # synthesize CloudFormation without deploying
 ```
 
 For incremental CI work, use `pnpm affected:lint`, `affected:typecheck`, `affected:test`, or `affected:build`. These need a meaningful Git base/head once the repository has its first commit.
@@ -35,6 +36,8 @@ Use two-space indentation, Prettier, and ESLint. TypeScript is strict; avoid `an
 Use a functional core and imperative shell. Domain/application code must be small, pure, immutable, and independent of React, GraphQL, AWS SDK, and persistence types. Validate external input in adapters/handlers; UI components and Lambda handlers only orchestrate.
 
 GraphQL schema and resolver input are boundary contracts, not domain models. Keep AWS and GraphQL types out of `libs/core`; inject ports such as clocks into application functions.
+
+Deploy stateful CDK stacks before stateless stacks. Stateful stacks publish stable identifiers through SSM; stateless stacks import those values. Do not create direct CloudFormation cross-stack references, and inspect `cdk diff` before protected production stateful changes.
 
 Tag every future Nx project with one `type:*` and one `scope:*` tag; see `docs/architecture-boundaries.md`. Do not bypass the configured dependency-boundary rules or share business logic through UI composition.
 

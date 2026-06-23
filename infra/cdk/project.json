@@ -1,0 +1,34 @@
+{
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "name": "platform-infra",
+  "projectType": "application",
+  "root": "infra/cdk",
+  "sourceRoot": "infra/cdk",
+  "tags": ["type:infra", "scope:core"],
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "pnpm cdk:synth"
+      }
+    },
+    "lint": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "pnpm exec eslint infra/cdk --max-warnings=0"
+      }
+    },
+    "typecheck": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "pnpm exec tsc --noEmit -p infra/cdk/tsconfig.infra.json"
+      }
+    },
+    "synth": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "pnpm cdk:synth"
+      }
+    }
+  }
+}

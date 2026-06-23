@@ -8,7 +8,15 @@ import tseslint from 'typescript-eslint';
 
 export default tseslint.config(
   {
-    ignores: ['.agents/**', '.codex/**', '.nx/**', 'coverage/**', 'dist/**', 'node_modules/**'],
+    ignores: [
+      '.agents/**',
+      '.codex/**',
+      '.nx/**',
+      'cdk.out/**',
+      'coverage/**',
+      'dist/**',
+      'node_modules/**',
+    ],
   },
   eslint.configs.recommended,
   ...tseslint.configs.recommended,
