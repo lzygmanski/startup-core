@@ -1,0 +1,10 @@
+type Query {
+  getCoreHealth: CoreHealth!
+}
+
+type CoreHealth {
+  status: String!
+  service: String!
+  version: String!
+  timestamp: AWSDateTime!
+}

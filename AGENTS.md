@@ -2,10 +2,10 @@
 
 ## Project Structure & Module Organization
 
-This is a pnpm-managed Nx monorepo in Phase 2. `apps/shell` is the generic React/Rsbuild frontend; APIs, infrastructure, authentication, business modules, and Module Federation are not implemented yet. Follow these locations as projects are added:
+This is a pnpm-managed Nx monorepo in Phase 3. `apps/shell` is the generic React/Rsbuild frontend, and `services/core-api` contains the source-level GraphQL health resolver. AWS deployment, persistence, authentication, business modules, and Module Federation are not implemented yet. Follow these locations as projects are added:
 
 - `apps/shell/` — generic React shell with TanStack Router and Query.
-- `services/` — API entry points and resolver shells.
+- `services/core-api/` — GraphQL schema, handler, mappers, and resolvers.
 - `libs/core/` — reusable generic domain, application, and contracts code.
 - `libs/shared/` — generic cross-cutting code.
 - `libs/modules/<module>/` — module-specific domain, application, contracts, and UI.
@@ -33,6 +33,8 @@ For incremental CI work, use `pnpm affected:lint`, `affected:typecheck`, `affect
 Use two-space indentation, Prettier, and ESLint. TypeScript is strict; avoid `any`, prefer `unknown` at external boundaries, and provide explicit return types for exported functions. Name files by role: `create-profile.ts`, `create-profile.test.ts`, and `profile.ts`.
 
 Use a functional core and imperative shell. Domain/application code must be small, pure, immutable, and independent of React, GraphQL, AWS SDK, and persistence types. Validate external input in adapters/handlers; UI components and Lambda handlers only orchestrate.
+
+GraphQL schema and resolver input are boundary contracts, not domain models. Keep AWS and GraphQL types out of `libs/core`; inject ports such as clocks into application functions.
 
 Tag every future Nx project with one `type:*` and one `scope:*` tag; see `docs/architecture-boundaries.md`. Do not bypass the configured dependency-boundary rules or share business logic through UI composition.
 

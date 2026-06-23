@@ -1,0 +1,22 @@
+{
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "name": "core-contracts",
+  "projectType": "library",
+  "root": "libs/core/contracts",
+  "sourceRoot": "libs/core/contracts/src",
+  "tags": ["type:contract", "scope:core"],
+  "targets": {
+    "lint": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "pnpm exec eslint libs/core/contracts/src --max-warnings=0"
+      }
+    },
+    "typecheck": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "pnpm exec tsc --noEmit -p libs/core/contracts/tsconfig.lib.json"
+      }
+    }
+  }
+}

@@ -18,7 +18,7 @@ UI / handlers → application use cases → domain functions → ports → adapt
 
 ```txt
 apps/shell/        React + Rsbuild platform shell
-services/          Future serverless API entry points
+services/core-api/ Generic GraphQL resolver source and schema
 libs/core/         Generic domain, application, and contracts libraries
 libs/shared/ui/    Shared shadcn-style UI primitives
 libs/modules/      Future business modules
@@ -27,12 +27,13 @@ infra/             Future CDK deployment code
 docs/              Architecture decisions and conventions
 ```
 
-The generic shell exists in Phase 2. It uses TanStack Router, TanStack Query, Tailwind CSS, and a shared UI button. There are deliberately no APIs, infrastructure stacks, authentication, product modules, or Module Federation configuration yet.
+The generic shell uses TanStack Router, TanStack Query, Tailwind CSS, and a shared UI button. The source-level core API exposes a `getCoreHealth` GraphQL contract through a thin, validated resolver. There are deliberately no deployed AWS resources, persistence, authentication, product modules, or Module Federation configuration yet.
 
 ## Run the Shell
 
 ```sh
 pnpm nx serve shell
+pnpm nx test core-api
 ```
 
 Open the local URL printed by Rsbuild (normally `http://localhost:3000`) to view the Hello World page.

@@ -17,6 +17,12 @@
     "skipLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@core/domain": ["libs/core/domain/src/index.ts"],
+      "@core/domain/*": ["libs/core/domain/src/*"],
+      "@core/application": ["libs/core/application/src/index.ts"],
+      "@core/application/*": ["libs/core/application/src/*"],
+      "@core/contracts": ["libs/core/contracts/src/index.ts"],
+      "@core/contracts/*": ["libs/core/contracts/src/*"],
       "@core/*": ["libs/core/*/src"],
       "@shared/*": ["libs/shared/*/src"],
       "@shared/ui": ["libs/shared/ui/src/index.ts"],

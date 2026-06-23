@@ -1,0 +1,22 @@
+{
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "name": "core-domain",
+  "projectType": "library",
+  "root": "libs/core/domain",
+  "sourceRoot": "libs/core/domain/src",
+  "tags": ["type:domain", "scope:core"],
+  "targets": {
+    "lint": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "pnpm exec eslint libs/core/domain/src --max-warnings=0"
+      }
+    },
+    "typecheck": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "pnpm exec tsc --noEmit -p libs/core/domain/tsconfig.lib.json"
+      }
+    }
+  }
+}
