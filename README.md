@@ -17,17 +17,25 @@ UI / handlers → application use cases → domain functions → ports → adapt
 ## Repository Layout
 
 ```txt
-apps/              Future frontend hosts and remotes
+apps/shell/        React + Rsbuild platform shell
 services/          Future serverless API entry points
 libs/core/         Generic domain, application, and contracts libraries
-libs/shared/       Generic cross-cutting libraries
+libs/shared/ui/    Shared shadcn-style UI primitives
 libs/modules/      Future business modules
 libs/adapters/     Future infrastructure integrations
 infra/             Future CDK deployment code
 docs/              Architecture decisions and conventions
 ```
 
-Only the generic foundation exists in Phase 1. There are deliberately no apps, APIs, infrastructure stacks, authentication, product modules, or Module Federation configuration yet.
+The generic shell exists in Phase 2. It uses TanStack Router, TanStack Query, Tailwind CSS, and a shared UI button. There are deliberately no APIs, infrastructure stacks, authentication, product modules, or Module Federation configuration yet.
+
+## Run the Shell
+
+```sh
+pnpm nx serve shell
+```
+
+Open the local URL printed by Rsbuild (normally `http://localhost:3000`) to view the Hello World page.
 
 ## Quality Commands
 
@@ -36,6 +44,7 @@ pnpm install --frozen-lockfile
 pnpm lint
 pnpm typecheck
 pnpm test
+pnpm build
 pnpm format:check
 pnpm affected:lint
 ```

@@ -19,8 +19,11 @@
     "paths": {
       "@core/*": ["libs/core/*/src"],
       "@shared/*": ["libs/shared/*/src"],
+      "@shared/ui": ["libs/shared/ui/src/index.ts"],
+      "@shared/ui/*": ["libs/shared/ui/src/*"],
       "@modules/*": ["libs/modules/*/src"],
-      "@adapters/*": ["libs/adapters/*/src"]
+      "@adapters/*": ["libs/adapters/*/src"],
+      "@shell/*": ["apps/shell/src/*"]
     }
   }
 }

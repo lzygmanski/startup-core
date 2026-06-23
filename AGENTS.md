@@ -2,9 +2,9 @@
 
 ## Project Structure & Module Organization
 
-This is a pnpm-managed Nx monorepo in Phase 1. The workspace tooling is present, but no apps, services, or deployable projects exist yet. Follow these reserved locations as projects are added:
+This is a pnpm-managed Nx monorepo in Phase 2. `apps/shell` is the generic React/Rsbuild frontend; APIs, infrastructure, authentication, business modules, and Module Federation are not implemented yet. Follow these locations as projects are added:
 
-- `apps/` — frontend hosts and remotes.
+- `apps/shell/` — generic React shell with TanStack Router and Query.
 - `services/` — API entry points and resolver shells.
 - `libs/core/` — reusable generic domain, application, and contracts code.
 - `libs/shared/` — generic cross-cutting code.
@@ -23,6 +23,7 @@ pnpm lint          # ESLint, then Nx project lint targets
 pnpm typecheck     # strict TypeScript, then Nx project targets
 pnpm test          # Vitest, then Nx project test targets
 pnpm build         # all Nx build targets
+pnpm nx serve shell # run the local Rsbuild shell
 ```
 
 For incremental CI work, use `pnpm affected:lint`, `affected:typecheck`, `affected:test`, or `affected:build`. These need a meaningful Git base/head once the repository has its first commit.

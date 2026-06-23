@@ -5,7 +5,7 @@
   "packageManager": "pnpm@10.23.0",
   "scripts": {
     "build": "nx run-many -t build",
-    "test": "vitest run --config vitest.config.ts && nx run-many -t test",
+    "test": "nx run-many -t test",
     "lint": "eslint . && nx run-many -t lint",
     "typecheck": "tsc --noEmit -p tsconfig.json && nx run-many -t typecheck",
     "format": "prettier --write .",
@@ -24,6 +24,14 @@
     "@eslint/js": "^9.39.4",
     "@nx/eslint": "^23.0.1",
     "@nx/eslint-plugin": "^23.0.1",
+    "@rsbuild/core": "^2.0.15",
+    "@rsbuild/plugin-react": "^2.1.0",
+    "@tailwindcss/postcss": "^4.3.1",
+    "@testing-library/dom": "^10.4.1",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
     "@vitest/coverage-v8": "^4.1.9",
     "eslint": "^9.39.4",
     "eslint-plugin-import": "^2.32.0",
@@ -31,11 +39,24 @@
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^7.1.1",
     "husky": "^9.1.7",
+    "jsdom": "^29.1.1",
     "lint-staged": "^17.0.8",
     "nx": "23.0.1",
+    "postcss": "^8.5.15",
     "prettier": "^3.8.4",
+    "tailwindcss": "^4.3.1",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.62.0",
     "vitest": "^4.1.9"
+  },
+  "dependencies": {
+    "@tanstack/react-query": "^5.101.1",
+    "@tanstack/react-router": "^1.170.16",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "lucide-react": "^1.21.0",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "tailwind-merge": "^3.6.0"
   }
 }

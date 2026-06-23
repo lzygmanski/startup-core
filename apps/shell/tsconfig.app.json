@@ -1,0 +1,9 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "tsBuildInfoFile": "../../.nx/cache/tsbuildinfo/shell.tsbuildinfo"
+  },
+  "include": ["src/**/*.ts", "src/**/*.tsx", "rsbuild.config.ts", "vitest.config.ts"]
+}

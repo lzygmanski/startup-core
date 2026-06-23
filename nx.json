@@ -18,5 +18,6 @@
     "@nx/eslint-plugin": {
       "projectFilePatterns": ["project.json", "package.json"]
     }
-  }
+  },
+  "analytics": false
 }

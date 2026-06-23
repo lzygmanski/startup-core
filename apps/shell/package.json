@@ -1,0 +1,11 @@
+{
+  "name": "@startup-core/shell",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "rsbuild dev --host 127.0.0.1",
+    "build": "rsbuild build",
+    "typecheck": "tsc --noEmit -p tsconfig.app.json",
+    "test": "vitest run --config vitest.config.ts"
+  }
+}
