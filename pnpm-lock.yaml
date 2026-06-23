@@ -114,6 +114,9 @@ importers:
       nx:
         specifier: 23.0.1
         version: 23.0.1
+      opinionated-ci-pipeline:
+        specifier: ^4.3.0
+        version: 4.3.0(aws-cdk-lib@2.260.0(constructs@10.6.0))(constructs@10.6.0)
       postcss:
         specifier: ^8.5.15
         version: 8.5.15
@@ -2958,6 +2961,14 @@ packages:
   open@8.4.2:
     resolution: {integrity: sha512-7x81NCL719oNbsq/3mh+hVrAWmFuEYUqrq/Iw3kUzH8ReypT9QQ0BLoJS7/G9k6N81XjW4qHWtjWwe/9eLy1EQ==}
     engines: {node: '>=12'}
+
+  opinionated-ci-pipeline@4.3.0:
+    resolution: {integrity: sha512-V0ROpMRDxaz/xPthZInVom/GG4J4rczGH+MkM0BeniVO8afFQbix7HQ/N9j5iO3pP+ms5w3jTc9al4rKEpBlzw==}
+    peerDependencies:
+      aws-cdk-lib: ^2.151.0
+      constructs: ^10.0.0
+    bundledDependencies:
+      - lodash
 
   optionator@0.9.4:
     resolution: {integrity: sha512-6IpQ7mKUxRcZNLIObR0hz7lxsapSSIYNZJwXPGeF0mTVqGKFIXj1DQcMoT22S3ROcLyY/rz0PWaWZ9ayWmad9g==}
@@ -6876,6 +6887,11 @@ snapshots:
       define-lazy-prop: 2.0.0
       is-docker: 2.2.1
       is-wsl: 2.2.0
+
+  opinionated-ci-pipeline@4.3.0(aws-cdk-lib@2.260.0(constructs@10.6.0))(constructs@10.6.0):
+    dependencies:
+      aws-cdk-lib: 2.260.0(constructs@10.6.0)
+      constructs: 10.6.0
 
   optionator@0.9.4:
     dependencies:

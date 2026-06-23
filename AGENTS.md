@@ -2,7 +2,7 @@
 
 ## Project Structure & Module Organization
 
-This is a pnpm-managed Nx monorepo in Phase 4. `apps/shell` is the generic React/Rsbuild frontend, `services/core-api` contains the GraphQL health resolver, and `infra/cdk` defines stateful and stateless stacks. Nothing has been deployed; persistence, authentication, business modules, and Module Federation are not implemented yet. Follow these locations as projects are added:
+This is a pnpm-managed Nx monorepo in Phase 5. `apps/shell` is the generic React/Rsbuild frontend, `services/core-api` contains the GraphQL health resolver, and `infra/cdk` defines stateful/stateless stacks plus an AWS-native CI pipeline. Nothing has been deployed; persistence, authentication, business modules, and Module Federation are not implemented yet. Follow these locations as projects are added:
 
 - `apps/shell/` — generic React shell with TanStack Router and Query.
 - `services/core-api/` — GraphQL schema, handler, mappers, and resolvers.
@@ -25,6 +25,7 @@ pnpm test          # Vitest, then Nx project test targets
 pnpm build         # all Nx build targets
 pnpm nx serve shell # run the local Rsbuild shell
 pnpm cdk:synth      # synthesize CloudFormation without deploying
+pnpm cdk:pipeline:synth # synthesize the CI pipeline without deploying
 ```
 
 For incremental CI work, use `pnpm affected:lint`, `affected:typecheck`, `affected:test`, or `affected:build`. These need a meaningful Git base/head once the repository has its first commit.
@@ -38,6 +39,10 @@ Use a functional core and imperative shell. Domain/application code must be smal
 GraphQL schema and resolver input are boundary contracts, not domain models. Keep AWS and GraphQL types out of `libs/core`; inject ports such as clocks into application functions.
 
 Deploy stateful CDK stacks before stateless stacks. Stateful stacks publish stable identifiers through SSM; stateless stacks import those values. Do not create direct CloudFormation cross-stack references, and inspect `cdk diff` before protected production stateful changes.
+
+The CI pipeline uses `opinionated-ci-pipeline`. It runs pnpm/Nx quality gates and deploys stateless and stateful stages separately. Copy `infra/cdk/pipeline.config.example.json` to the ignored `pipeline.config.json` before synthesizing or deploying the CI pipeline. The GitHub access token belongs only in the SecureString `/<projectName>/ci/repositoryAccessToken`; never add it to source or context files.
+
+Personal environments use `pnpm exec cdk deploy -c env=<name> -c personal=true --all`. Feature-branch deployments are opt-in through `featureBranches` in local pipeline config and are stateless-only.
 
 Tag every future Nx project with one `type:*` and one `scope:*` tag; see `docs/architecture-boundaries.md`. Do not bypass the configured dependency-boundary rules or share business logic through UI composition.
 

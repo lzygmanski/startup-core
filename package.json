@@ -16,6 +16,8 @@
     "affected:typecheck": "nx affected -t typecheck",
     "cdk:synth": "cdk synth",
     "cdk:diff": "cdk diff",
+    "cdk:pipeline:synth": "cdk --app \"pnpm exec tsx infra/cdk/bin/pipeline.ts\" synth -c ci=true",
+    "cdk:pipeline:deploy": "cdk --app \"pnpm exec tsx infra/cdk/bin/pipeline.ts\" deploy -c ci=true",
     "prepare": "husky"
   },
   "lint-staged": {
@@ -49,6 +51,7 @@
     "jsdom": "^29.1.1",
     "lint-staged": "^17.0.8",
     "nx": "23.0.1",
+    "opinionated-ci-pipeline": "^4.3.0",
     "postcss": "^8.5.15",
     "prettier": "^3.8.4",
     "tailwindcss": "^4.3.1",

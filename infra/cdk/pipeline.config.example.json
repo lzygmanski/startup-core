@@ -1,0 +1,16 @@
+{
+  "projectName": "your-project-name",
+  "aws": {
+    "account": "YOUR_AWS_ACCOUNT_ID",
+    "region": "YOUR_AWS_REGION"
+  },
+  "featureBranches": {
+    "enabled": false,
+    "prefixes": ["feature/"]
+  },
+  "repository": {
+    "host": "github",
+    "name": "your-organization/your-repository",
+    "defaultBranch": "main"
+  }
+}

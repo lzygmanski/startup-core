@@ -8,6 +8,7 @@ node_modules/
 dist/
 coverage/
 cdk.out/
+infra/cdk/pipeline.config.json
 
 # Local configuration and editor state
 .env

@@ -35,6 +35,7 @@ The generic shell uses TanStack Router, TanStack Query, Tailwind CSS, and a shar
 pnpm nx serve shell
 pnpm nx test core-api
 pnpm cdk:synth
+pnpm cdk:pipeline:synth
 ```
 
 Open the local URL printed by Rsbuild (normally `http://localhost:3000`) to view the Hello World page.

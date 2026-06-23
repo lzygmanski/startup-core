@@ -1,7 +1,4 @@
 {
   "app": "pnpm exec tsx infra/cdk/bin/app.ts",
-  "context": {
-    "environment": "dev",
-    "projectName": "startup-core"
-  }
+  "context": {}
 }

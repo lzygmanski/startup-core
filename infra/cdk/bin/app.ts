@@ -1,13 +1,17 @@
 import * as cdk from 'aws-cdk-lib';
 
 import { getEnvironmentConfig } from '../lib/config/environments';
-import { createStackName } from '../lib/constructs/resource-names';
-import { PlatformStatefulStack } from '../lib/stateful/platform-stateful.stack';
-import { CoreApiStack } from '../lib/stateless/core-api.stack';
+import { loadOptionalPipelineConfig } from '../lib/config/pipeline-config';
+import { createPlatformStacks } from '../lib/pipeline/application';
 
 const app = new cdk.App();
-const environmentConfig = getEnvironmentConfig(app.node.tryGetContext('environment'));
-const projectName = app.node.tryGetContext('projectName') ?? 'startup-core';
+const environmentConfig = getEnvironmentConfig(
+  app.node.tryGetContext('env') ?? app.node.tryGetContext('environment') ?? 'dev',
+);
+const pipelineConfig = loadOptionalPipelineConfig();
+const projectName =
+  pipelineConfig?.projectName ?? app.node.tryGetContext('projectName') ?? 'startup-core';
+const personalEnvironment = app.node.tryGetContext('personal') === 'true';
 const awsEnvironment: cdk.Environment = {
   ...(process.env.CDK_DEFAULT_ACCOUNT === undefined
     ? {}
@@ -17,19 +21,10 @@ const awsEnvironment: cdk.Environment = {
     : { region: process.env.CDK_DEFAULT_REGION }),
 };
 
-const statefulStack = new PlatformStatefulStack(
+createPlatformStacks(
   app,
-  createStackName(projectName, environmentConfig.name, 'stateful'),
-  {
-    env: awsEnvironment,
-    environmentConfig,
-    projectName,
-  },
-);
-
-new CoreApiStack(app, createStackName(projectName, environmentConfig.name, 'core-api'), {
-  env: awsEnvironment,
-  environmentConfig,
-  platformIdentifierParameterName: statefulStack.platformIdentifierParameterName,
   projectName,
-});
+  environmentConfig.name,
+  awsEnvironment,
+  personalEnvironment ? 'all' : 'stateless',
+);

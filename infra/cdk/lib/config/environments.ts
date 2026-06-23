@@ -1,6 +1,6 @@
 export const environmentNames = ['dev', 'staging', 'prod'] as const;
 
-export type EnvironmentName = (typeof environmentNames)[number];
+export type EnvironmentName = string;
 
 export type EnvironmentConfig = Readonly<{
   isProduction: boolean;
@@ -8,7 +8,7 @@ export type EnvironmentConfig = Readonly<{
 }>;
 
 function isEnvironmentName(value: unknown): value is EnvironmentName {
-  return typeof value === 'string' && environmentNames.includes(value as EnvironmentName);
+  return typeof value === 'string' && /^[a-z0-9][a-z0-9-]*$/.test(value);
 }
 
 export function getEnvironmentConfig(value: unknown): EnvironmentConfig {
