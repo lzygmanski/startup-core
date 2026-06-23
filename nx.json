@@ -1,0 +1,22 @@
+{
+  "installation": {
+    "version": "23.0.1"
+  },
+  "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "targetDefaults": {
+    "build": {
+      "cache": true
+    },
+    "test": {
+      "cache": true
+    },
+    "lint": {
+      "cache": true
+    }
+  },
+  "pluginsConfig": {
+    "@nx/eslint-plugin": {
+      "projectFilePatterns": ["project.json", "package.json"]
+    }
+  }
+}
